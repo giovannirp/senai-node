@@ -5,10 +5,13 @@ const router = express.Router();
 
 router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname+'/index.html'));
+  console.log(__dirname);
   console.log("index");
 });
 
 router.get('/sobre', function(req, res) {
+  // Raiz __dirname
+  console.log("Aqui é o dirname", __dirname)
   res.sendFile(path.join(__dirname+'/sobre.html'));
   console.log("sobre");
 });
