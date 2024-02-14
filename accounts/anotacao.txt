@@ -1,5 +1,5 @@
 - instalando chalk e inquirer (npm install chalk inquirer);
-  important ter essas versões:  "chalk": "^4.1.2",
-                                "inquirer": "^8.1.2"
+  important ter essas versões:  "chalk": "^4.1.2", "npm i chalk@4.1.2"
+                                "inquirer": "^8.1.2" "npm i inquirer@8.1.2"
                                 
 - catch: Este bloco é responsável por lidar com a exceção capturada. 
