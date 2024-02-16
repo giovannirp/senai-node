@@ -60,6 +60,35 @@ function construindoConta() {
     .catch((error) => console.log(error))
 }
 
+// função para verificar a conta
+function checarConta(nomeConta) {
+  if (!fs.existsSync(`contas/${nomeConta}.json`)) {
+    console.log(chalk.bgRed.black('Esta conta não existe, escolha outro nome!'));
+    return false;
+  }
+}
+
+//Função mostrar saldo da conta
+function obterSaldo() {
+  inquirer.prompt([
+    {
+      name: 'nomeDaConta',
+      message: 'Qual o nome da sua conta?'
+    }
+  ])
+  .then((resposta) => {
+    const nomeDaConta = resposta['nomeDaConta'];
+
+    // verifica se a conta existe
+    if(!checarConta(nomeDaConta)) {
+      return obterSaldo();
+    }
+
+
+  })
+  .catch((error) => console.log(error))
+}
+
 //criando função
 // criando os menus
 function operation() {
@@ -83,7 +112,8 @@ function operation() {
       }
 
       if (action === 'Consultar Saldo') {
-        console.log("Consultar Saldo");
+        // console.log("Consultar Saldo");
+        obterSaldo();
       }
 
       if (action === "Depositar") {
