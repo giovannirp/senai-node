@@ -68,6 +68,16 @@ function checarConta(nomeConta) {
   }
 }
 
+// função para pegar a conta
+function getConta(nomeDaConta) {
+  const contaJson = fs.readFileSync(`contas/${nomeDaConta}.json`, {
+    encoding: 'utf8',
+    flag: 'r'
+  })
+
+  return JSON.parse(contaJson);
+}
+
 //Função mostrar saldo da conta
 function obterSaldo() {
   inquirer.prompt([
@@ -83,6 +93,13 @@ function obterSaldo() {
     if(!checarConta(nomeDaConta)) {
       return obterSaldo();
     }
+
+    const contaData = getConta(nomeDaConta);
+
+    console.log(chalk.bgBlue.black(
+      `Olá, o saldo da conta é de R$${contaData.balance}`,
+    ),
+    )
 
 
   })
