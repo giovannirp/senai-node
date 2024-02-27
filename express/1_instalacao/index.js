@@ -3,6 +3,7 @@ const app = express();
 const port = 3000; // variável ambiente
 
 const path = require("path")
+const users = require('./users');
 
 // ler o body
 app.use(
@@ -13,52 +14,20 @@ app.use(
 
 app.use(express.json());
 
+// arquivos estáticos
+app.use(express.static('public'));
+
 const basePath = path.join(__dirname, 'templates');
 
-// Middleware
-// const checkAuth = function(req, res, next) {
-//   req.authStatus = false;
-
-//   if (req.authStatus) {
-//     console.log('Está logado, pode continuar');
-//     next()
-//   } else {
-//     console.log('Não está logado, faça o login para continuar');
-//     next()
-//   }
-// }
-
-// app.use(checkAuth);
-
-//criando post
-app.get('/users/add', (req, res) => {
-  res.sendFile(`${basePath}/userform.html`);
-})
-
-app.post('/users/save', (req, res) => {
-  console.log(req.body);
-
-  const name = req.body.name;
-  const age = req.body.age;
-
-  console.log(`O nome do usuário é ${name} e ele tem ${age} anos`);
-
-  res.sendFile(`${basePath}/userform.html`);
-});
-
-// pegando usuário por parametro
-app.get('/users/:id', (req, res) => {
-  const id = req.params.id;
-
-  // leitura da tabela users, resgatar um usuário do banco
-  console.log(`Estamos buscando pelo usuário: ${id}`);
-
-  res.sendFile(`${basePath}/users.html`);
-});
+app.use('/users', users);
 
 app.get('/', (req, res) => {
   res.sendFile(`${basePath}/index.html`);
 });
+
+app.use(function(req, res, next) {
+  res.status(404).sendFile(`${basePath}/404.html`)
+})
 
 app.listen(port, () => {
   console.log(`App rodando na porta ${port}`);

@@ -1,0 +1,14 @@
+// Middleware
+// const checkAuth = function(req, res, next) {
+//   req.authStatus = false;
+
+//   if (req.authStatus) {
+//     console.log('Está logado, pode continuar');
+//     next()
+//   } else {
+//     console.log('Não está logado, faça o login para continuar');
+//     next()
+//   }
+// }
+
+// app.use(checkAuth);
