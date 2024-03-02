@@ -24,7 +24,7 @@ app.use(express.static('public'));
 // Definindo o caminho base para os templates
 const basePath = path.join(__dirname, 'templates');
 
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 
 // Rota principal que envia o arquivo index.html ao cliente quando acessado
 app.get('/', (req, res) => {
