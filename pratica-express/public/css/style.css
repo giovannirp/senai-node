@@ -1,0 +1,10 @@
+body {
+  background: rgb(207, 204, 204);
+}
+
+.text-404 {
+  color: #075584;
+  font-size: 26px;
+  font-family: arial;
+  text-shadow: 1px 1px #dad4d4;
+}

@@ -10,14 +10,13 @@ const port = 3000;
 // Importando o módulo path para lidar com caminhos de arquivos
 const path = require("path");
 
-const usersRouter = require('./users');
+const usersRouter = require('./rotas');
 
 // Middleware para analisar dados de formulário
 app.use(express.urlencoded({
   extended: true
   })
 )
-
 // Middleware para servir arquivos estáticos a partir do diretório 'public'
 app.use(express.static('public'));
 
@@ -31,7 +30,7 @@ app.get('/', (req, res) => {
   res.sendFile(`${basePath}/index.html`);
 });
 
-app.use(function(req, res, next) {
+app.use(function(req, res) {
   res.status(404).sendFile(`${basePath}/404.html`);
 });
 
