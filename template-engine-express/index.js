@@ -6,9 +6,24 @@ const app = express();
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
+
 app.get('/', (req, res) => {
   // res.render('home', { layout: true })
-  res.render('home')
+  const user = {
+    name: "Giovanni",
+    surname: 'Ribeiro',
+    age: 36
+  }
+
+  const palavra = "testando";
+
+  const auth = false;
+  const approved = false;
+
+  res.render('home', { user: user, auth, approved })
 });
 
 app.listen(3000, () => {
