@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+
 app.get('/books', (req, res) => {
   const sql = "SELECT * FROM books";
 
@@ -34,13 +35,15 @@ app.get('/books', (req, res) => {
 
     const books = data;
 
-    console.log(books);
+    console.log("dados do banco", books);
 
     res.render('books', { books })
 
   })
 });
 
+
+// vai para página de edição buscando por ID
 app.get('/books/edit/:id', (req, res) => {
 
   const id = req.params.id;
@@ -60,7 +63,7 @@ app.get('/books/edit/:id', (req, res) => {
   })
 })
 
-
+// cadastrando
 app.post('/books/insertbook', (req, res) => {
   const title = req.body.title;
   const pageqty = req.body.pageqty;
@@ -76,6 +79,7 @@ app.post('/books/insertbook', (req, res) => {
   })
 })
 
+// buscando por Id
 app.get('/books/:id', (req, res) => {
 
   const id = req.params.id;
@@ -96,6 +100,7 @@ app.get('/books/:id', (req, res) => {
 
 })
 
+// Atualizando
 app.post('/books/updatedbook', (req, res) => {
   const id = req.body.id;
   const title = req.body.title;
@@ -114,6 +119,8 @@ app.post('/books/updatedbook', (req, res) => {
 
 });
 
+
+// removendo item
 app.post('/books/remove/:id', (req, res) => {
   const id = req.params.id;
 
