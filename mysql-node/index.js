@@ -105,13 +105,13 @@ app.post('/books/updatedbook', (req, res) => {
 
   conn.query(sql, function(err) {
     if (err) {
-      console.log(err);
-      return;
+      console.log("novo erro", err);
+      return; 
     }
 
     res.redirect('/books');
   });
-  
+
 });
 
 const conn = mysql.createConnection({
