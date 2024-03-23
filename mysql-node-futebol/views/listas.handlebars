@@ -1,0 +1,15 @@
+<h1>Lista de times disponíveis</h1>
+
+<div class="books-container">
+  <a href="/">Adicionar Livros</a>
+
+  {{#each fut}}
+    <table border="1" class="table">
+      <tr>
+        <td>#{{this.id}}</td>
+        <td>{{this.nome}}</td>
+        <td>{{this.titulo}}</td>
+      </tr>
+    </table>
+  {{/each}}
+</div>
