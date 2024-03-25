@@ -38,21 +38,40 @@ app.get("/listas", (req, res) => {
   });
 });
 
-// inserindo dados
-// app.post('/listas', (req, res) => {
-//   const sql =  "SELECT * FROM times";
+//Listando e buscando por ID
+app.get('/listas/:id', (req, res) => {
 
-//   conn.query(sql, function(err, data) {
-//     if (err) {
-//       console.log(err);
-//       return;
-//     }
+  const id = req.params.id;
 
-//     const fut = data;
-//     console.log("dados do banco", fut)
-//     res.render('listas', { fut })
-//   })
-// })
+    const sql = `SELECT * FROM times WHERE id = ${id}`;
+
+    conn.query(sql, function(err, data) {
+      if (err) {
+        console.log(err)
+        return;
+      }
+  
+      const listas = data[0];
+  
+      res.render('listas', { listas })
+  
+    })
+});
+
+//removendo item
+app.post('/post/remove/:id', (req, res) => {
+  const id = req.params.id;
+
+  const sql = `DELETE FROM listas WHERE id = ${id}`;
+
+  conn.query(sql, function(err) {
+    if (err) {
+      console.log(err);
+    }
+  })
+
+  res.redirect('/listas');
+});
 
 // cadastrando
 app.post("/listagem/insertbook", (req, res) => {
