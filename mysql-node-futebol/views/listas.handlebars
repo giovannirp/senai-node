@@ -7,20 +7,14 @@
     <tr>
       <th>Id</th>
       <th>Nome</th>
-      <th>Titulo</th>
       <th class="text-center">Apagar</th>
     </tr>
     {{#each fut}}
       <tr >
         <td>#{{this.id}}</td>
         <td>{{this.nome}}</td>
-        <td>{{this.titulo}}</td>
         <th class="text-center">
-          <form action="/listas/remove/{{lista.id}}">
-            <button type="submit" class="border-0 background-trans">
-              <i  class="bi bi-trash text-danger c-pointer"></i>
-            </button>
-          </form>
+          <a href="listas/{{this.id}}">Ver detalhes</a>
 
         </th>
       </tr>

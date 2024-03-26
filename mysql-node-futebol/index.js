@@ -33,16 +33,14 @@ app.get("/listas", (req, res) => {
     }
 
     const fut = data;
-    console.log("dados do banco", fut);
+    // console.log("dados do banco", fut);
     res.render("listas", { fut });
   });
 });
 
 //Listando e buscando por ID
 app.get('/listas/:id', (req, res) => {
-
-  const id = req.params.id;
-
+    const id = req.params.id;
     const sql = `SELECT * FROM times WHERE id = ${id}`;
 
     conn.query(sql, function(err, data) {
@@ -50,19 +48,20 @@ app.get('/listas/:id', (req, res) => {
         console.log(err)
         return;
       }
-  
-      const listas = data[0];
-  
-      res.render('listas', { listas })
-  
+
+      const lista = data[0];
+
+      res.render('lista', { lista })
+    
     })
 });
 
 //removendo item
-app.post('/post/remove/:id', (req, res) => {
+app.post('/listas/remove/:id', (req, res) => {
   const id = req.params.id;
+  //
+  const sql = `DELETE FROM times WHERE id = ${id}`;
 
-  const sql = `DELETE FROM listas WHERE id = ${id}`;
 
   conn.query(sql, function(err) {
     if (err) {
@@ -77,8 +76,9 @@ app.post('/post/remove/:id', (req, res) => {
 app.post("/listagem/insertbook", (req, res) => {
   const nome = req.body.nome;
   const titulo = req.body.titulo;
+  const info = req.body.info;
 
-  const sql = `INSERT INTO times (nome, titulo) values ('${nome}', '${titulo}')`;
+  const sql = `INSERT INTO times (nome, titulo, info) values ('${nome}', '${titulo}', '${info}')`;
 
   conn.query(sql, function (err) {
     if (err) {
@@ -86,7 +86,7 @@ app.post("/listagem/insertbook", (req, res) => {
       return;
     }
 
-    res.redirect("/");
+    res.redirect("/listas");
   });
 });
 

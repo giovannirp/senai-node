@@ -1,0 +1,18 @@
+<h1>Lista</h1>
+<div>
+  <div class="card col-10">
+    <div class="card-body">
+      <h5 class="card-title"> {{lista.nome}}</h5>
+      <p class="">
+        {{lista.info}}
+      </p>
+      <p class="card-text"><strong class="text-success">Titulos: </strong> {{lista.titulo}}</p>
+      <form action="/listas/remove/{{lista.id}}" method="post">
+        <input type="submit" value="Remover" class="btn btn-danger" />
+      </form>
+    </div>
+  </div>
+
+  <a href="/listas" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover mt-4 d-block">Voltar para lista</a>
+
+</div>
