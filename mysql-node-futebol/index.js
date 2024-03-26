@@ -72,6 +72,45 @@ app.post('/listas/remove/:id', (req, res) => {
   res.redirect('/listas');
 });
 
+//vai para página de edição buscando por ID
+app.get('/listas/edit/:id', (req, res) => {
+
+  const id = req.params.id;
+
+  const sql = `SELECT * FROM times WHERE id = ${id}`;
+
+  conn.query(sql, function(err, data) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    const lista = data[0];
+
+    res.render('editlist', { lista });
+  })
+});
+
+
+//Atualizando
+app.post('/listas/updatelista', (req, res) => {
+  const id = req.body.id;
+  const nome = req.body.nome;
+  const titulo = req.body.titulo;  
+  const info = req.body.info;
+  
+  const sql = `UPDATE times SET nome = '${nome}', titulo = '${titulo}', info = '${info}' where id = '${id}'`;
+
+  conn.query(sql, function(err) {
+    if (err) {
+      console.log("novo erro", err);
+      return;
+    }
+
+    res.redirect('/listas');
+  })
+});
+
 // cadastrando
 app.post("/listagem/insertbook", (req, res) => {
   const nome = req.body.nome;
