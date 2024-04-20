@@ -79,3 +79,36 @@ h1 {
   display: flex;
   margin-bottom: 10px;
 }
+
+.actions a,
+.actions input {
+  border: 1px solid #BBB;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #fff;
+  padding: 10px;
+  font-size: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.details-btn {
+  border-color: #004085;
+  background: #004085 !important;
+  color: #fcfcfc;
+}
+
+.btn-cadastrar {
+  border-color: #004085;
+  background: #004085 !important;
+  color: #fcfcfc;
+  padding: 7px;
+  cursor: pointer;
+  border: 0;
+}
+
+.delete-btn {
+  border-color: #890303;
+  color: #fcfcfc;
+  background: #890303 !important;
+}
