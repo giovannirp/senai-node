@@ -1,0 +1,21 @@
+<h1>Editando: {{user.name}}</h1>
+<form action="/users/create" method="POST" class="form">
+  <input type="hidden" name="id" value="{{user.id}}" />
+  <div class="form-control">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" placeholder="Digite o nome do usuário" value="{{user.name}}" />
+  </div>
+  <div class="form-control">
+    <label for="occupation">Ocupação:</label>
+    <input type="text" id="occupation" name="occupation" placeholder="Digite o nome do usuário" value="{{user.occupation}}" />
+  </div>
+  <div class="form-control form-checkbox">
+    {{#if user.newslleter}}
+      <input type="checkbox" name="newslleter" checked />
+    {{else}}
+      <input type="checkbox" name="newslleter" />
+    {{/if}}
+    <label for="newslleter">Enviar Pormoções?</label>
+  </div>
+  <input type="submit" value="Editar" class="btn-cadastrar">
+</form>
