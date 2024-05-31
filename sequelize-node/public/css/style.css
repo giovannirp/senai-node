@@ -112,3 +112,19 @@ h1 {
   color: #fcfcfc;
   background: #890303 !important;
 }
+
+/* ADDRESS */
+.address-container {
+  max-width: 1000px;
+  margin:  1em auto;
+  padding-top: 1em;
+  border-top: 1px solid #ccc;
+}
+
+.address-container h2 {
+  margin-bottom: 1em;
+}
+
+.address-container form {
+  width: 300px;
+}

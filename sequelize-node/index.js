@@ -1,11 +1,13 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
-const User = require("./models/User");
 
 const app = express();
 
 const conn = require("./db/conn");
+
+const User = require("./models/User");
+const Address = require('./models/Adress');
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
@@ -68,6 +70,22 @@ app.get("/users/edit/:id", async (req, res) => {
   res.render("useredit", { user });
 });
 
+app.get("/users/edit/:id", (req, res) => {
+  const id = req.params.id
+
+  User.findOne({
+    raw: true,
+    where: {
+      id: id,
+    },
+  })
+    .then((user) => {
+      console.log(user)
+      res.render('useredit', { user })
+    })
+    .catch((err) => console.log(err))
+});
+
 app.post('/users/update', async (req, res) => {
   const id = req.body.id;
   const name = req.body.name;
@@ -101,8 +119,27 @@ app.get("/", async (req, res) => {
   res.render("home", { users: users });
 });
 
+app.post('/address/create', async (req, res) => {
+  const UserId = req.body.UserId;
+  const street = req.body.street;
+  const number = req.body.number;
+  const city = req.body.city;
+
+  const adress = {
+    UserId,
+    street,
+    number,
+    city
+  }
+
+  await Address.create(adress);
+
+  res.redirect(`/users/edit/${UserId}`);
+});
+
 conn
   .sync()
+  // .sync({force: true})
   .then(() => {
     app.listen(3000);
   })
